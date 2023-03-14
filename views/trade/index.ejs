@@ -1,0 +1,29 @@
+<%-include('../partials/header.ejs')%>
+                <div class="grid-child-element">
+                    <%if(trading.length){%>
+                        <h2 id = "select">Categories and Items</h2>
+                        
+                          <%let setTrade = new Set();%> 
+                          <%for(var i = 0; i<trading.length;i++){%>
+                            <%setTrade.add(trading[i].category);%>
+                          <%}%>
+                        <%let catList = Array.from(setTrade);%>
+                       <%for(var i = 0;i<catList.length;i++){%>
+                        <div class="grid-child-element">
+                           <h4><%= catList[i]%></h4>
+                         <%for(var j=0;j<trading.length;j++){%>
+                           <%if(trading[j].category === catList[i]){%>
+                            <ul>
+                                <li class="items"><a href="/trading/<%= trading[j].id%>"><p style="color: black;"><%= trading[j].title %></p></a></li>
+                            </ul>
+                           <%}%>
+                          
+                         <%}%>
+                        </div>
+                       <%}%>
+                      
+                           <%}else{%>
+                           <p>No items to display</p>
+                           <%}%>            
+        </div>
+<%-include('../partials/footer.ejs')%>

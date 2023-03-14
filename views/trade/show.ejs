@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs')%>
+<div class = "content">
+    <h4><%= trade.title%></h4>
+    <div id="trade">
+        <p>Category : <%= trade.category%></p>
+        <p>Details : <%= trade.details%></p>
+        <p>Trading status : <%= trade.status%></p>
+        <img alt="<%= trade.title%>" src="<%= trade.image%>" width="300" height="300">
+    </div>
+    <form >
+        <button formmethod="GET" formaction="/trading/<%= trade.id%>/edit" type="submit">EDIT</button>
+        <button formmethod="POST" formaction="/trading/<%= trade.id%>?_method=DELETE" type="submit">DELETE</button>
+    </form>
+</div>
+<%- include('../partials/footer.ejs')%>
