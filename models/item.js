@@ -4,7 +4,7 @@ const mongoSchema = new Schema({
     title : {type: String, required : [true,"Insert the Title"]},
     category : {type: String, required : [true,"Insert the category"]},
     details : {type: String, required : [true,"Insert the details"],
-    minlenght: [10,'Inserted text should be atleast 10 characters']},
+    minlength: [6,'Inserted text should be atleast 10 characters']},
     status : {type: String, required : [true,"Insert the status"]}, 
     image : {type: String, required : [true,"Insert the image"]},
 },
