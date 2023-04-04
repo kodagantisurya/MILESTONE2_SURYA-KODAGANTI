@@ -1,0 +1,38 @@
+In CMD:
+
+1. Start the mongodb shell
+-> mongo
+
+2. Create a database
+-> use shoes
+switched to db shoes
+3. To check in which databse we are currently using
+-> db
+shoes
+4. create a collection
+-> db.createCollection("shoess")
+{ ok: 1 }
+5. Show all collections present in database
+-> show collections
+shoess
+6. Insert a single item into the collection
+-> db.books.insertOne({title: "Nike", details: "The Jumpman logo is owned by Nike to promote the Air Jordan brand of basketball sneakers and other sportswear. It is the silhouette of former NBA player and current Charlotte Hornets owner Michael Jordan.", category: "Sneakers",status:"Traded",image:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.sothebys.com%2Fen%2Farticles%2Fthe-meteoric-rise-of-the-jordan-brand&psig=AOvVaw10ON3A1eifKWGE5_1oHpXF&ust=1680657248379000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCIjForyGj_4CFQAAAAAdAAAAABAD"})
+
+{
+  acknowledged: true,
+  insertedId: ObjectId("642b7b8e517f3a55db50652f")
+}
+
+7. Insert many items into the collection
+-> db.books.insertMany([{title: "Adidas", details: "Adidas AG is a German multinational corporation, founded and headquartered in Herzogenaurach, Bavaria, that designs and manufactures shoes, clothing and accessories. It is the largest sportswear manufacturer in Europe", category: "Sneakers",status:"Traded",image:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fassets.adidas.com%2Fimages%2Fw_600%2Cf_auto%2Cq_auto%2F4e894c2b76dd4c8e9013aafc016047af_9366%2FSuperstar_Shoes_White_FV3284_01_standard.jpg&tbnid=77BGvujwWewZEM&vet=12ahUKEwjOuYufh4_-AhU5nYQIHSQRA-QQ94IIKAB6BQgBEOUB..i&imgrefurl=https%3A%2F%2Fwww.adidas.com%2Fus%2Fsuperstar-shoes%2FFV3284.html&docid=OHhi19nLaZbr8M&w=600&h=600&itg=1&q=adidas&hl=en&ved=2ahUKEwjOuYufh4_-AhU5nYQIHSQRA-QQ94IIKAB6BQgBEOUB"},{title: "BATA", details: "The Bata Corporation is a multinational footwear, apparel and fashion accessories manufacturer and retailer of Moravian origin, headquartered in Lausanne, Switzerland.", category: "Formals",status:"UnTraded",image:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.bata.in%2Fdw%2Fimage%2Fv2%2FBCLG_PRD%2Fon%2Fdemandware.static%2F-%2FSites-bata-in-master-catalog%2Fdefault%2Fdwa0fab0fa%2Fimages%2Flarge%2F8316471_2.jpeg%3Fsw%3D800%26sh%3D800&tbnid=Hs6oMykvzmdQtM&vet=12ahUKEwjtguW5h4_-AhWweTABHVnCANwQMygDegUIARDyAQ..i&imgrefurl=https%3A%2F%2Fwww.bata.in%2Fbata-formal-shoes-for-men-500_0BA8314710101F.html&docid=FRx5NwbAd24chM&w=800&h=800&q=bata%20shopes&hl=en&ved=2ahUKEwjtguW5h4_-AhWweTABHVnCANwQMygDegUIARDyAQ"}])
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("642b7b99517f3a55db506530"),
+    '1': ObjectId("642b7b99517f3a55db506531")
+  }
+}
+
+8. Reset the database to intial state:
+db.dropDatabase()
