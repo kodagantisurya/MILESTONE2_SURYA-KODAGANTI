@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const tradeRoutes = require('./routes/tradeRoutes')
 const mainRoutes = require('./routes/mainRoutes')
 const app = express();
+const mongoose= require('mongoose')
 
 let port = 8080;
 let host = "localhost";
@@ -13,6 +14,13 @@ app.use(express.static("public"));
 app.use(morgan("tiny"));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+mongoose.connect('mongodb://0.0.0.0:27017/milestone',{useNewUrlParser:true, useUnifiedTopology:true})
+.then(
+  app.listen(port, host, ()=>{
+      console.log('Server is running on port', port);
+  })
+)
+.catch(err => console.log(err))
 app.use('/', mainRoutes)
 app.use("/trading", tradeRoutes);
 
@@ -30,8 +38,4 @@ app.use((err, req, res, next) => {
   }
   res.status = err.status
   res.render('error',{error:err})
-});
-
-app.listen(port, host, () => {
-  console.log("Server started at port no : ", port);
 });

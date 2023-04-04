@@ -1,7 +1,7 @@
 const model = require('../models/item')
 exports.index = (req,res,next) =>{
     model.find()
-    .then(trades =>res.render('./trade/index',{trades}))
+    .then(trading =>res.render('./trade/index',{trading}))
     .catch(err => next(err))
 }
 exports.show = (req,res,next) => {
@@ -31,7 +31,7 @@ exports.create = (req,res,next) => {
     let trade = new model(req.body)
     trade.save(trade)
     .then((trade) => {
-        res.redirect('/trades')      
+        res.redirect('/trading')      
     })
     .catch(err => {
         if(err.name === 'ValidationError'){
@@ -74,7 +74,7 @@ exports.update =(req,res,next) => {
     model.findByIdAndUpdate(id,trade, {useFindAndModify:false, runValidators : true})
     .then(trade => {
         if(trade){
-            res.redirect('/trades/'+id)
+            res.redirect('/trading/'+id)
         }
         else{
             let err = new Error('Cannot find a trade with id ' + id);
@@ -99,7 +99,7 @@ exports.delete = (req,res,next) => {
     model.findByIdAndDelete(id,{useFindAndModify:false})
     .then(trade => {
         if(trade){        
-            res.redirect('/trades')
+            res.redirect('/trading')
         }
         else{
             let err = new Error('Cannot find a trade with id ' + id);
